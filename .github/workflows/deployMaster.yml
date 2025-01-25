@@ -12,3 +12,4 @@ jobs:
       - name: Clonar reporsitorio
         uses: actions/checkout@v4
       - run: docker build -t api_gestion_dominios:latest -t api_gestion_dominios:$(date +%F_%H-%M-%S) .
+      - run: cd ~/DockerCompose_SistemaDominios && docker stop api_dominio && docker remove api_dominio && docker-compose -f docker-compose.yml up -d api_dominio
