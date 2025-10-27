@@ -9,6 +9,7 @@ using Throw;
 using InternetDominio = Aplicacion.Dominio.Entidades.DominioInternet.DominioInternet;
 
 namespace Aplicacion.Caracteristicas.DominioInternet
+    // nuevo 
 {
     public class ActualizarDominioInternet
     {
