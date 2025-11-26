@@ -31,6 +31,7 @@ namespace Aplicacion
                     (a) => a.MigrationsAssembly("API_GestionDominios"));
             },
             ServiceLifetime.Transient);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

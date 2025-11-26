@@ -1,4 +1,5 @@
 ﻿using Aplicacion.Dominio.Entidades.DominioInternet;
+using Aplicacion.Dominio.Entidades.LicenciaSoftware;
 using Aplicacion.Infraestructura.Persistencia.Comunes;
 using Aplicacion.Infraestructura.Persistencia.Configuracion;
 using Microsoft.EntityFrameworkCore;
@@ -23,10 +24,12 @@ namespace Aplicacion.Infraestructura.Persistencia
             this.interceptorEntidadAuditable = interceptorEntidadAuditable;
         }
         public virtual DbSet<DominioInternet> DominioInternet { get; set; }
+        public virtual DbSet<LicenciaSoftware> LicenciaSoftware { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new DominioInternetConfiguracion());
+            modelBuilder.ApplyConfiguration(new LicenciaSoftwareConfiguracion());
 
             OnModelCreatingPartial(modelBuilder);
         }
