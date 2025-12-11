@@ -7,13 +7,13 @@ namespace API_GestionDominios.CronJobs
     public class EnviarEmailsDominiosPorCaducarCronJob : IHostedService, IDisposable
     {
         private Timer? timer = null;
-        private ISender mediator;
         private readonly ILogger<EnviarEmailsDominiosPorCaducarCronJob> logger;
+        private readonly IServiceScopeFactory scopeFactory;
 
-        public EnviarEmailsDominiosPorCaducarCronJob(IServiceProvider serviceProvider, ILogger<EnviarEmailsDominiosPorCaducarCronJob> logger)
+        public EnviarEmailsDominiosPorCaducarCronJob(ILogger<EnviarEmailsDominiosPorCaducarCronJob> logger, IServiceScopeFactory scopeFactory)
         {
-            this.mediator = serviceProvider.GetService<ISender>()!;
             this.logger = logger;
+            this.scopeFactory = scopeFactory;
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
@@ -54,6 +54,9 @@ namespace API_GestionDominios.CronJobs
         {
             try
             {
+                using var scope = scopeFactory.CreateScope();
+
+                var mediator = scope.ServiceProvider.GetRequiredService<ISender>();
                 var emailsEnviados = await mediator.Send(new EnviarRecordatorioDeActualizacion.Consulta());
                 logger.LogInformation($"Se enviaron {emailsEnviados} emails");
             }
