@@ -1,4 +1,5 @@
 ﻿using Aplicacion.Helper.Servicios;
+using System.Security.Claims;
 
 namespace API_GestionDominios.Servicios
 {
@@ -17,8 +18,8 @@ namespace API_GestionDominios.Servicios
                                  ?? string.Empty;
 
         public string Email => this._http.HttpContext?
-                                     .User.FindFirst(x => x.Type == "email")?.Value
-                                 ?? string.Empty;
+                                             .User.FindFirst(x => x.Type == ClaimTypes.Email)?.Value
+                                         ?? string.Empty;
 
     }
 }
