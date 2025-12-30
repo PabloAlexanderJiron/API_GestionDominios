@@ -39,7 +39,7 @@ namespace API_GestionDominios.CronJobs
             DateTime fechaActual = DateTime.UtcNow.AddHours(-5);
 
             // Definir las 10:30 AM en Ecuador para hoy
-            var hora = int.Parse(Environment.GetEnvironmentVariable("HORA_ENVIO_EMAIL") ?? "8");
+            var hora = int.Parse(Environment.GetEnvironmentVariable("HORA_ENVIO_EMAIL") ?? "7");
             var minuto = int.Parse(Environment.GetEnvironmentVariable("MINUTO_ENVIO_EMAIL") ?? "0");
             DateTime proximaEjecucion = new DateTime(fechaActual.Year, fechaActual.Month, fechaActual.Day, hora, minuto, 0);
 
