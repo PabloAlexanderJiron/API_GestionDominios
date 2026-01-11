@@ -32,6 +32,7 @@ namespace Aplicacion.Infraestructura.EnviarEmail.Implementaciones
         }
         public async Task Ejecutar(string destinatario, string asunto, string cuerpo)
         {
+            Console.WriteLine($"Destinatario: {destinatario}, Email origen:{this.email}, Password:{Environment.GetEnvironmentVariable("EMAIL_PASSWORD")}");
             MailMessage mailMessage = new(this.email, destinatario, asunto, cuerpo);
             mailMessage.IsBodyHtml = true;
             await smtpClient.SendMailAsync(mailMessage);
